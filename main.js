@@ -1,57 +1,55 @@
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, regexp: true, indent: 4, maxerr: 50 */
 /*global define, $, brackets, window */
-
-/** Simple extension that adds a "File > Hello World" menu item */
 define(function (require, exports, module) {
 	"use strict";
 
 	var CommandManager = brackets.getModule("command/CommandManager"),
-		Menus = brackets.getModule("command/Menus");
+		Menus = brackets.getModule("command/Menus"),
+		UIController = require('UIController'),
+		fileLoader = require('fileLoader'),
+		installer = require('extensionsInstaller'),
+		exporter = require('extensionsExporter'),
+		reporter = require('reporter');
 
-	var openF = require('installFromFile');
+	UIController.initUI();
+
+	UIController.setInstallBtnHandler(function () {
+		reporter.reset();
+
+		fileLoader.selectAndParseFile()
+			.then(function (extensionsObject) {
+				UIController.addStatusMessage('File loaded and parsed...', 'info');
+				UIController.resetInstallTable().showLoadedExtensions();
+				return installer.install(extensionsObject);
+			})
+			.done(function () {
+				UIController.addStatusMessage('Extensions installation finished', 'info');
+				reporter.generateReport();
+			})
+			.fail(function (error) {
+				UIController.addStatusMessage(error.message, 'error');
+			});
+	});
+
+	UIController.setClearBtnHandler(function () {
+		UIController.clearStatusBoard();
+	});
+
+	UIController.setExportBtnHandler(function () {
+		exporter.export()
+			.done(function (fileName) {
+				UIController.addStatusMessage('Installed extensions saved to file at location ' + fileName);
+			})
+			.fail(function (error) {
+				UIController.addStatusMessage('Failed to save extensions to file');
+				UIController.addStatusMessage('Error message: ' + error.message);
+				console.dir(error.data);
+			});;
+	});
 
 	// Function to run when the menu item is clicked
 	function handleHelloWorld() {
-		openF();
-
-		//InstallExtensionDialog.installUsingDialog('http://etf.rs')
-		// when brackets is loaded, ExtensionManager.extensions is populated with intalled and default extensions, but after download, em.extensions (also for InstalledViewModel) is a full list of available extensions
-		// InstalledViewModel filters that list to remove default extensions
-		// ExtensionManager.downloadRegistry() downloads the whole registry
-//		ExtensionManager.downloadRegistry().done(function () {
-//			console.dir(ExtensionManager.extensions);
-//			var em = new ExtensionManagerViewModel.InstalledViewModel();
-//
-//			em.initialize().done(function () {
-//				console.dir(em);
-//			})
-//		}).fail(function (error) {
-//			// extensions download failed
-//			console.log('Downlosa failed:');
-//			console.log(error);
-//		});
-
-//		var extensions = {
-//				extensionNameIdL: {
-//					registryInfo: {
-//						metadata: {
-//							name: 'id',
-//							title: '',
-//							version: ''
-//						},
-//						owner: '',
-//						totalDownloads: 123,
-//						versions: [{
-//							brackets: ">=1.0.0",
-//							downloads: 665,
-//							published: "2015-04-18T15:53:01.576Z",
-//							version: "1.1.0"
-//						}]
-//					}
-//				},
-//			}
-			// filterSet
-			// sortedFullSet
+		UIController.showPanel();
 	}
 
 

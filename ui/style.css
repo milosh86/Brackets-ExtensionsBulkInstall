@@ -1,0 +1,61 @@
+#extensions-install-from-file #btn-group {
+/*
+	position: absolute;
+	right: 40px;
+*/
+	margin-left: 5px;
+}
+
+#extensions-install-from-file #install-export-extensions {
+	width: 55%;
+	height: 100% margin: 5px;
+	float: left;
+}
+
+#extensions-install-from-file #status-board {
+	width: 40%;
+	height: 100%;
+	margin: 5px;
+	float: right;
+	overflow-y: auto;
+}
+
+#extensions-install-from-file #clear-board {
+	float: right;
+}
+
+#extensions-install-from-file #status-board h4 {
+	float: left;
+	margin: 5px;
+}
+
+#extensions-install-from-file #install-extensions {
+	width: 45%;
+	height: 100px;
+	margin: 5px;
+	float: left;
+}
+
+#extensions-install-from-file #export-extensions {
+	width: 50%;
+	height: 100px;
+	margin: 5px;
+	float: right;
+}
+
+#extensions-install-from-file #loaded-extensions {
+	margin: 10px 0 2px 5px;
+}
+
+#extensions-install-from-file #loaded-extensions h4 {
+	margin: 5px;
+}
+
+#extensions-install-from-file hr {
+	width: 100%;
+	margin: 2px;
+}
+
+.clearfix {
+	overflow: hidden;
+}

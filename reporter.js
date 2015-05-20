@@ -6,7 +6,10 @@ define(function (require, exports, module) {
 	var skippedInstalled = [], // already installed
 		skippedNotFound = [], // not found in registry
 		installed = [],
-		failed = [];
+		failed = [],
+		
+		reportHTML = require('text!ui/report.html'),
+		UIController = require('UIController');
 
 	function assertStringNonEmpty(str) {
 		if (!(str && typeof str === 'string')) {
@@ -15,7 +18,6 @@ define(function (require, exports, module) {
 	}
 
 	return {
-
 		addToSkipped: function (eId) {
 			assertStringNonEmpty(eId);
 			skippedInstalled.push(eId);
@@ -33,11 +35,21 @@ define(function (require, exports, module) {
 			skippedNotFound.push(eId);
 		},
 		generateReport: function () {
-			console.log('Report generated:');
-			console.dir(skippedInstalled);
-			console.dir(skippedNotFound);
-			console.dir(installed);
-			console.dir(failed);
+			var report = Mustache.render(reportHTML, {
+				installed: installed.join(', ') || 'None',
+				skippedInstalled: skippedInstalled.join(', ') || 'None',
+				notFound: skippedNotFound.join(', ') || 'None',
+				failed: failed.join(', ') || 'None'
+			});
+			
+			UIController.addHTMLToStatusBoard(report);
+			
+		},
+		reset: function () {
+			skippedInstalled = [];
+			skippedNotFound = [];
+			installed = [];
+			failed = [];
 		}
 	};
 

@@ -205,12 +205,6 @@ define(function (require, exports, module) {
 	}
 
 
-	function showReport() {
-		UIController.showReport(reportData);
-	}
-
-
-
 	return installExtensionsFromSelectedFile;
 
 });

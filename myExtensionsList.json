@@ -1,0 +1,33 @@
+{
+  "extensions": {
+    "80s-baby": false,
+    "brackets-beautify": false,
+    "brackets-darker": false,
+    "drewkoch.icons": false,
+    "zaggino.brackets-git": false,
+    "hirse.outline-list": false,
+    "edc.brackets-snippets": false,
+    "Brackets-ExtensionsBulkInstall": false,
+    "dnbard.documents-toolbar": false,
+    "codemirror.esnext.highlight": true,
+    "brackets-emmet": true,
+    "dnbard.extensions-rating": true,
+    "funcdocr": true,
+    "brackets-hoganjs-language": true,
+    "le717.html-skeleton": false,
+    "pflynn.regex-editor": false,
+    "globexdesigns.brackets-jscs": false,
+    "jslint.configurator": false,
+    "gruehle.markdown-preview": false,
+    "brackets-mustache-language": false,
+    "brackets-mystique-theme": false,
+    "brackets-nodejs": false,
+    "renanveroneze.brackets-open-terminal-here": false,
+    "brackets-pep8": false,
+    "quickdocsjs": false,
+    "asgerf.bracket-rename": false,
+    "brackets-semicenter": false,
+    "spell-check": false,
+    "ternific": false
+  }
+}
