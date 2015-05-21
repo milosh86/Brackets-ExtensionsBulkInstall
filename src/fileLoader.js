@@ -2,21 +2,16 @@
 define(function (require, exports, module) {
 	"use strict";
 	var fileLoader = {},
-		showError = require('showError'),
-		reporter = require('reporter'),
-		utils = require('utils'),
-//		ProjectModel = brackets.getModule('project/ProjectModel'),
+		reporter = require('./reporter'),
+		utils = require('./utils'),
 		ProjectManager = brackets.getModule("project/ProjectManager"),
 		FileSystem = brackets.getModule('filesystem/FileSystem'),
 		FileUtils = brackets.getModule('file/FileUtils');
 
 
-
 	function selectFile() {
-		var result = $.Deferred();
-		
-		var projectRoot = ProjectManager.getProjectRoot().fullPath;
-		console.dir(projectRoot);
+		var result = $.Deferred(),
+			projectRoot = ProjectManager.getProjectRoot().fullPath;
 		
 		// showOpenDialog(allowMultipleSelection, chooseDirectories, title, initialPath, fileTypes, callback)
 		FileSystem.showOpenDialog(false, false, 'Choose file to import', projectRoot, null, function (err, files) {

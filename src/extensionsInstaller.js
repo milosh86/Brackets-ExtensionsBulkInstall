@@ -1,14 +1,14 @@
 /*global define, $, brackets, window */
 define(function (require, exports, module) {
 	"use strict";
-	var reporter = require('reporter'),
-		utils = require('utils'),
+	var reporter = require('./reporter'),
+		utils = require('./utils'),
 		ExtensionManager = brackets.getModule("extensibility/ExtensionManager"),
 		ExtensionManagerViewModel = brackets.getModule("extensibility/ExtensionManagerViewModel"),
 		Package = brackets.getModule("extensibility/Package"),
 		Async = brackets.getModule("utils/Async"),
 
-		UIController = require('UIController'),
+		UIController = require('./UIController'),
 
 		installedEM = new ExtensionManagerViewModel.InstalledViewModel(),
 
@@ -64,6 +64,18 @@ define(function (require, exports, module) {
 				reporter.addToNotFound(eId);
 				return false;
 			}
+		});
+	}
+	
+	function addLoadedExtensionsToTable() {
+		providedExtensions.forEach(function (id) {
+			var title = 'Not Available';
+			try {
+				title = registry[id].registryInfo.metadata.title;
+			} catch (e) {
+				
+			}
+			UIController.addExtensionToInstall({id: id, title: title});
 		});
 	}
 
@@ -130,6 +142,7 @@ define(function (require, exports, module) {
 		install: function install(extensions) {
 			return initExtensionsLists(extensions)
 				.then(function () {
+					addLoadedExtensionsToTable();
 					filterValidExtensions();
 					installExtensions();
 					

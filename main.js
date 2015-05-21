@@ -5,11 +5,11 @@ define(function (require, exports, module) {
 
 	var CommandManager = brackets.getModule("command/CommandManager"),
 		Menus = brackets.getModule("command/Menus"),
-		UIController = require('UIController'),
-		fileLoader = require('fileLoader'),
-		installer = require('extensionsInstaller'),
-		exporter = require('extensionsExporter'),
-		reporter = require('reporter');
+		UIController = require('./src/UIController'),
+		fileLoader = require('./src/fileLoader'),
+		installer = require('./src/extensionsInstaller'),
+		exporter = require('./src/extensionsExporter'),
+		reporter = require('./src/reporter');
 
 	UIController.initUI();
 
@@ -36,7 +36,7 @@ define(function (require, exports, module) {
 	});
 
 	UIController.setExportBtnHandler(function () {
-		exporter.export()
+		exporter.exportInstalled()
 			.done(function (fileName) {
 				UIController.addStatusMessage('Installed extensions saved to file at location ' + fileName);
 			})
@@ -44,7 +44,7 @@ define(function (require, exports, module) {
 				UIController.addStatusMessage('Failed to save extensions to file');
 				UIController.addStatusMessage('Error message: ' + error.message);
 				console.dir(error.data);
-			});;
+			});
 	});
 
 	// Function to run when the menu item is clicked

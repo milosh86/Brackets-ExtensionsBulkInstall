@@ -1,9 +1,9 @@
 /*global define, $, brackets, window */
 define(function (require, exports, module) {
 	"use strict";
-	var reporter = require('reporter'),
-		utils = require('utils'),
-		UIController = require('UIController'),
+	var reporter = require('./reporter'),
+		utils = require('./utils'),
+		UIController = require('./UIController'),
 
 		ExtensionManager = brackets.getModule("extensibility/ExtensionManager"),
 		ExtensionManagerViewModel = brackets.getModule("extensibility/ExtensionManagerViewModel"),
@@ -81,7 +81,7 @@ define(function (require, exports, module) {
 
 
 	return {
-		export: function exportInstalledExtensions() {
+		exportInstalled: function exportInstalledExtensions() {
 			// forgot to return here! ... document it as common mistake 
 			return initExtensionsLists()
 				.then(function (content) {

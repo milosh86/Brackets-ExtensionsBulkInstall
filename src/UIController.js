@@ -6,9 +6,9 @@ define(function (require, exports, module) {
 	var WM = brackets.getModule('view/WorkspaceManager'),
 		ExtensionUtils = brackets.getModule("utils/ExtensionUtils"),
 
-		startPageHTML = require('text!ui/startPage.html'),
-		tableRowHTML = require('text!ui/tableRow.html'),
-		statusMsgHTML = require('text!ui/statusMsg.html'),
+		startPageHTML = require('text!../ui/startPage.html'),
+		tableRowHTML = require('text!../ui/tableRow.html'),
+		statusMsgHTML = require('text!../ui/statusMsg.html'),
 		startPage,
 		panel,
 		$installBtn,
@@ -20,14 +20,14 @@ define(function (require, exports, module) {
 		$statusBoard,
 		$statusBoardMessages;
 
-	ExtensionUtils.loadStyleSheet(module, "ui/style.css");
+	ExtensionUtils.loadStyleSheet(module, "../ui/style.css");
 
 	var UIController = {};
 
 	UIController.initUI = function () {
 		//startPage = Mustache.render(startPageHTML, {});
 
-		panel = WM.createBottomPanel('install.extensions.from.file', $(startPageHTML), 100);
+		panel = WM.createBottomPanel('install-extensions-from-file-panel', $(startPageHTML), 300);
 
 		$installBtn = $('#extensions-install-from-file #install-btn');
 		$installTable = $('#extensions-install-from-file #install-table');
@@ -95,7 +95,7 @@ define(function (require, exports, module) {
 		}
 
 		$statusField = $tableRowForId.children('.extension-status').children('span');
-		tooltip = typeof tooltip === 'string' && tooltip || '';
+		tooltip = (typeof tooltip === 'string') && (tooltip || '');
 
 		if (newStatus === 'install gif') {
 			$statusField.empty().addClass('spinner small spin');

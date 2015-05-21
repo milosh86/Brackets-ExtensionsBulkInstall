@@ -1,5 +1,5 @@
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, regexp: true, indent: 4, maxerr: 50 */
-/*global define, $, brackets, window */
+/*global define, $, brackets, window, Mustache */
 
 define(function (require, exports, module) {
 	"use strict";
@@ -8,8 +8,8 @@ define(function (require, exports, module) {
 		installed = [],
 		failed = [],
 		
-		reportHTML = require('text!ui/report.html'),
-		UIController = require('UIController');
+		reportHTML = require('text!../ui/report.html'),
+		UIController = require('./UIController');
 
 	function assertStringNonEmpty(str) {
 		if (!(str && typeof str === 'string')) {
@@ -39,7 +39,11 @@ define(function (require, exports, module) {
 				installed: installed.join(', ') || 'None',
 				skippedInstalled: skippedInstalled.join(', ') || 'None',
 				notFound: skippedNotFound.join(', ') || 'None',
-				failed: failed.join(', ') || 'None'
+				failed: failed.join(', ') || 'None',
+				installedNum: installed.length,
+				skippedNum: skippedInstalled.length,
+				failedNum: failed.length,
+				notFoundNum: skippedNotFound.length
 			});
 			
 			UIController.addHTMLToStatusBoard(report);
