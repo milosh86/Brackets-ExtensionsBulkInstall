@@ -6,7 +6,7 @@
 - Click "Export to file" button to export all currently installed extensions to file. 
 - Optionaly edit exported file to mark which extensions to skip during import process, by setting extension flag to "false". 
 - Install easily group of extensions from the exported file on a different machine, just by clicking "Install from file" button and selecting exported file.
-- Share your favourite extensions with others
+- Share your list of favourite extensions with others
     
 # Example exported file
 ```
@@ -15,7 +15,20 @@ myExtensions.json
   "extensions": {
     "brackets-beautify": true,
     "brackets-darker": true,
-    "drewkoch.icons": true,
+    "drewkoch.icons": true,<table class="table table-striped row-highlight table-condensed">
+    <thead>
+        <tr>
+            <th class="shortcut-base"><a>Base Key</a></th>
+            <th class="shortcut-binding"><a>Key Binding</a></th>
+            <th class="shortcut-cmd-id"><a>Command ID</a></th>
+            <th class="shortcut-cmd-name"><a>Command Name</a></th>
+            <th class="shortcut-orig"><a>Origin</a></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
     "zaggino.brackets-git": true,
     "hirse.outline-list": true,
     "edc.brackets-snippets": true,
