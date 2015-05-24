@@ -24,6 +24,7 @@ define(function (require, exports, module) {
 
 				try {
 					JSONToExport.extensions = utils.arrToMap(installedEM.filterSet);
+					JSONToExport.extensions['milosh86.extensions-bulk-installer'] = false;
 					JSONToExport = JSON.stringify(JSONToExport, null, 2);
 				} catch (error) {
 					result.reject({

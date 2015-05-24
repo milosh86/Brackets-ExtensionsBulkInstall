@@ -1,11 +1,12 @@
-extensions-install-from-file {
-	margin-bottom: 30px;
+#extensions-install-from-file-toolbar-btn.active {
+  background: url('images/icon_active.svg');
 }
+
+#extensions-install-from-file-toolbar-btn.inactive {
+  background: url('images/icon.svg');
+}
+
 #extensions-install-from-file #btn-group {
-/*
-	position: absolute;
-	right: 40px;
-*/
 	margin-left: 5px;
 }
 
@@ -23,6 +24,9 @@ extensions-install-from-file {
 	margin: 15px 0 2px 5px;
 	float: right;
 	overflow-y: auto;
+}
+#extensions-install-from-file #status-board #status-messages {
+	margin-bottom: 30px;
 }
 
 #extensions-install-from-file #clear-board,

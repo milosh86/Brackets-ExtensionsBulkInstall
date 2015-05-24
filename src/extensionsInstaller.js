@@ -17,8 +17,7 @@ define(function (require, exports, module) {
 		readyToInstall, // filtered list of extensions ready to be installed.
 		installPromisesList = [],
 		registry;
-
-
+	
 	function initExtensionsLists(parsedExtensionsObject) {
 		var result = $.Deferred();
 
@@ -96,20 +95,6 @@ define(function (require, exports, module) {
 
 			startInstallation(extensionId, url);
 		});
-
-		//		$.when.apply($, installPromisesList) //todo: we don;t want to stop on first error. Use utils/Async/waitForAll instead of wait
-		//			.done(function () {
-		//				console.log('Installation finished!');
-		//			})
-		//			.fail(function () {
-		//				console.log('Installation failed');
-		//				reporter.failed();
-		//			})
-		//			.always(function () {
-		//				reporter.generateReport();
-		//			});
-		//		InstallExtensionDialog.installUsingDialog(urloOrFile)
-		//		ExtensionLoader._loadAll
 	}
 
 	function startInstallation(id, url) {

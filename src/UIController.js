@@ -1,5 +1,4 @@
-/*jslint vars: true, plusplus: true, devel: true, nomen: true, regexp: true, indent: 4, maxerr: 50 */
-/*global define, $, brackets, window, Mustache */
+/*global define, $, brackets, window, Mustache, console */
 
 define(function (require, exports, module) {
 	"use strict";
@@ -9,20 +8,25 @@ define(function (require, exports, module) {
 		startPageHTML = require('text!../ui/startPage.html'),
 		tableRowHTML = require('text!../ui/tableRow.html'),
 		statusMsgHTML = require('text!../ui/statusMsg.html'),
+		toolbarBtnHTML = require('text!../ui/toolbarBtn.html'),
+		$toolbarBtn,
 		startPage,
 		panel,
 		$installBtn,
 		$exportBtn,
-		$clearBtn,
+		$clearStatusBoardBtn,
+		$clearTableBtn,
 		$loadedExtensionsContainer,
-		$installTable,
+		$installTableBody,
 		$exportFileContent,
 		$statusBoard,
-		$statusBoardMessages;
+		$statusBoardMessages,
+
+		panelOpened = false,
+		UIController = {};
 
 	ExtensionUtils.loadStyleSheet(module, "../ui/style.css");
 
-	var UIController = {};
 
 	UIController.initUI = function () {
 		//startPage = Mustache.render(startPageHTML, {});
@@ -30,17 +34,30 @@ define(function (require, exports, module) {
 		panel = WM.createBottomPanel('install-extensions-from-file-panel', $(startPageHTML), 300);
 
 		$installBtn = $('#extensions-install-from-file #install-btn');
-		$installTable = $('#extensions-install-from-file #install-table');
+		$installTableBody = $('#extensions-install-from-file #install-table #table-body');
 		$exportBtn = $('#extensions-install-from-file #export-btn');
 		$exportFileContent = $('#extensions-install-from-file #export-file-content');
 		$statusBoard = $('#extensions-install-from-file #status-board');
 		$statusBoardMessages = $statusBoard.children('#status-messages');
 		$loadedExtensionsContainer = $('#extensions-install-from-file #loaded-extensions');
-		$clearBtn = $('#extensions-install-from-file #clear-board');
+		$clearStatusBoardBtn = $('#extensions-install-from-file #clear-board');
+		$clearTableBtn = $('#extensions-install-from-file #clear-table');
 
 		$("#extensions-install-from-file .close").click(function () {
 			UIController.hidePanel();
 		});
+
+		UIController.setClearStatusBoardBtnHandler(function () {
+			UIController.clearStatusBoard();
+		});
+
+		UIController.setClearTableBtnHandler(function () {
+			UIController.resetInstallTable();
+		});
+
+		// Insert toolbar button
+		$('#main-toolbar .buttons').append(toolbarBtnHTML);
+		$toolbarBtn = $('#extensions-install-from-file-toolbar-btn');
 
 		return UIController;
 	};
@@ -48,17 +65,37 @@ define(function (require, exports, module) {
 	UIController.hidePanel = function () {
 		if (panel) {
 			panel.hide();
+			panelOpened = false;
+			UIController.updateToolbarIcon();
 		}
-		
+
 		return UIController;
 	};
 
 	UIController.showPanel = function () {
 		if (panel) {
 			panel.show();
+			panelOpened = true;
+			UIController.updateToolbarIcon();
 		}
-		
+
 		return UIController;
+	};
+
+	UIController.togglePanel = function () {
+		if (panelOpened) {
+			UIController.hidePanel();
+		} else {
+			UIController.showPanel();
+		}
+	};
+
+	UIController.updateToolbarIcon = function () {
+		if (panelOpened) {
+			$toolbarBtn.removeClass().addClass('active');
+		} else {
+			$toolbarBtn.removeClass().addClass('inactive');
+		}
 	};
 
 	UIController.addExtensionToInstall = function (row) {
@@ -77,15 +114,19 @@ define(function (require, exports, module) {
 			status: status
 		}));
 
-		$installTable.append($tableRow);
+		$installTableBody.append($tableRow);
 		return $tableRow;
 	};
 
 	UIController.updateExtensionStatus = function (id, newStatus, tooltip) {
-		var escapedId = id.replace(/\./g, '\\.');
-		console.log('updating status for id: ' + id);
-		var $tableRowForId = $('#extensions-install-from-file #' + escapedId),
+		var escapedId,
+			$tableRowForId,
 			$statusField;
+
+		escapedId = id.replace(/\./g, '\\.');
+		console.log('updating status for id: ' + id);
+		$tableRowForId = $('#extensions-install-from-file #' + escapedId);
+	
 
 		if ($tableRowForId.length === 0) {
 			console.log('table row not found, adding new for: ' + id);
@@ -103,42 +144,45 @@ define(function (require, exports, module) {
 			$statusField.removeClass('spinner small spin').text(newStatus);
 			$tableRowForId.attr('title', tooltip);
 		}
-		
+
 		return UIController;
 	};
-	
+
 	UIController.clearStatusBoard = function () {
 		$statusBoardMessages.empty();
-		
+
 		return UIController;
 	};
 
 	UIController.addStatusMessage = function (msg, type) {
 		type || (type = 'info');
-		var $statusMsg = $(Mustache.render(statusMsgHTML, {message: msg, type: type}));
-		
+		var $statusMsg = $(Mustache.render(statusMsgHTML, {
+			message: msg,
+			type: type
+		}));
+
 		$statusBoardMessages.append($statusMsg);
-		
+
 		return UIController;
 	};
-	
+
 	UIController.addHTMLToStatusBoard = function (html) {
 		$(html).appendTo($statusBoardMessages);
-		
+
 		return UIController;
 	};
-	
+
 	UIController.showLoadedExtensions = function () {
 		$loadedExtensionsContainer.show();
 	};
-	
+
 	UIController.hideLoadedExtensions = function () {
 		$loadedExtensionsContainer.hide();
 	};
 
 	UIController.resetInstallTable = function () {
-		$installTable.children('tr').remove();
-		
+		$installTableBody.empty();
+
 		return UIController;
 	};
 
@@ -148,22 +192,31 @@ define(function (require, exports, module) {
 
 	UIController.setInstallBtnHandler = function (handler) {
 		setHandler($installBtn, 'click', handler);
-		
+
 		return UIController;
 	};
 
 	UIController.setExportBtnHandler = function (handler) {
 		setHandler($exportBtn, 'click', handler);
-		
-		return UIController;
-	};
-	
-	UIController.setClearBtnHandler = function (handler) {
-		setHandler($clearBtn, 'click', handler);
-		
+
 		return UIController;
 	};
 
+	UIController.setClearStatusBoardBtnHandler = function (handler) {
+		setHandler($clearStatusBoardBtn, 'click', handler);
+
+		return UIController;
+	};
+
+	UIController.setClearTableBtnHandler = function (handler) {
+		setHandler($clearTableBtn, 'click', handler);
+
+		return UIController;
+	};
+
+	UIController.setToolbarBtnHandler = function (handler) {
+		setHandler($toolbarBtn, 'click', handler);
+	};
 
 	return UIController;
 });

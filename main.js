@@ -1,15 +1,15 @@
-/*jslint vars: true, plusplus: true, devel: true, nomen: true, regexp: true, indent: 4, maxerr: 50 */
-/*global define, $, brackets, window */
+/*global define, $, brackets, window, console */
 define(function (require, exports, module) {
 	"use strict";
 
 	var CommandManager = brackets.getModule("command/CommandManager"),
-		Menus = brackets.getModule("command/Menus"),
+		KeyBindingManager = brackets.getModule("command/KeyBindingManager"),
 		UIController = require('./src/UIController'),
 		fileLoader = require('./src/fileLoader'),
 		installer = require('./src/extensionsInstaller'),
 		exporter = require('./src/extensionsExporter'),
-		reporter = require('./src/reporter');
+		reporter = require('./src/reporter'),
+		MY_COMMAND_ID;
 
 	UIController.initUI();
 
@@ -31,10 +31,6 @@ define(function (require, exports, module) {
 			});
 	});
 
-	UIController.setClearBtnHandler(function () {
-		UIController.clearStatusBoard();
-	});
-
 	UIController.setExportBtnHandler(function () {
 		exporter.exportInstalled()
 			.done(function (fileName) {
@@ -46,23 +42,20 @@ define(function (require, exports, module) {
 				console.dir(error.data);
 			});
 	});
+	
+	UIController.setToolbarBtnHandler(function () {
+		UIController.togglePanel();
+	});
 
 	// Function to run when the menu item is clicked
-	function handleHelloWorld() {
-		UIController.showPanel();
+	function handleBulkInstallerCall() {
+		UIController.togglePanel();
 	}
 
 
-	// First, register a command - a UI-less object associating an id to a handler
-	var MY_COMMAND_ID = "helloworld.sayhello"; // package-style naming to avoid collisions
-	CommandManager.register("Hello World", MY_COMMAND_ID, handleHelloWorld);
+	MY_COMMAND_ID = "milosh86.bulk.installer";
+	CommandManager.register("Extensions Bulk Installer", MY_COMMAND_ID, handleBulkInstallerCall);
 
-	// Then create a menu item bound to the command
-	// The label of the menu item is the name we gave the command (see above)
-	var menu = Menus.getMenu(Menus.AppMenuBar.FILE_MENU);
-	// menu.addMenuItem(MY_COMMAND_ID);
-
-	// We could also add a key binding at the same time:
-	menu.addMenuItem(MY_COMMAND_ID, "Ctrl-Alt-M");
+	KeyBindingManager.addBinding(MY_COMMAND_ID, "Ctrl-Alt-M");
 	// (Note: "Ctrl" is automatically mapped to "Cmd" on Mac)
 });
