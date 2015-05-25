@@ -1,7 +1,7 @@
 {
 	"name": "milosh86.extensions-bulk-installer",
 	"title": "Extensions Bulk Installer",
-	"description": "Export installed extensions to file. Install it easily on different machine or share amoung your team and other developers.",
+	"description": "Export installed extensions to file. Install it easily on different machines or share it with your team and other developers.",
 	"homepage": "https://github.com/milosh86/Brackets-ExtensionsBulkInstall",
 	"version": "0.1.2",
 	"author": "Milos Dzepina <milos.dzepina@gmail.com>",
