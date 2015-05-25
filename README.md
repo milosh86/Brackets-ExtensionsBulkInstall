@@ -48,4 +48,5 @@ myExtensions.json
 
 #Release history
 ##0.1.2
+- fixed bug related to ExtensionManagerViewModel.InstalledViewModel
 
