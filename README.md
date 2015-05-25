@@ -45,3 +45,7 @@ myExtensions.json
 ```
 #Screenshots
 ![alt tag](https://raw.github.com/milosh86/Brackets-ExtensionsBulkInstall/master/screenshots/s1.png)
+
+#Release history
+##0.1.2
+

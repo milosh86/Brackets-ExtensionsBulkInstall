@@ -11,12 +11,13 @@ define(function (require, exports, module) {
 		FileSystem = brackets.getModule('filesystem/FileSystem'),
 		FileUtils = brackets.getModule('file/FileUtils'),
 
-		installedEM = new ExtensionManagerViewModel.InstalledViewModel();
+		installedEM;
 
 
 
 	function initExtensionsLists() {
 		var result = $.Deferred();
+        installedEM = new ExtensionManagerViewModel.InstalledViewModel();
 
 		installedEM.initialize()
 			.then(function () {

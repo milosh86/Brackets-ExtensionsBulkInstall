@@ -10,7 +10,7 @@ define(function (require, exports, module) {
 
 		UIController = require('./UIController'),
 
-		installedEM = new ExtensionManagerViewModel.InstalledViewModel(),
+		installedEM,
 
 		providedExtensions, // the list of all extensions parsed from selected file
 		installedExtensions, // all currently installed extensions in the brackets
@@ -20,6 +20,7 @@ define(function (require, exports, module) {
 	
 	function initExtensionsLists(parsedExtensionsObject) {
 		var result = $.Deferred();
+        installedEM = new ExtensionManagerViewModel.InstalledViewModel();
 
 		ExtensionManager.downloadRegistry()
 			.then(function () {
