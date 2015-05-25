@@ -6,5 +6,8 @@
 	"version": "0.1.2",
 	"author": "Milos Dzepina <milos.dzepina@gmail.com>",
 	"license": "MIT",
-	"keywords": ["extensions", "install", "export", "import", "brackets", "bulk", "group install"]
+	"keywords": ["extensions", "install", "export", "import", "brackets", "bulk", "group install"],
+    "engines": {
+        "brackets": ">=0.20.0"
+    }
 }
