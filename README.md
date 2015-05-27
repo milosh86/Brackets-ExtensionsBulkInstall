@@ -50,3 +50,5 @@ myExtensions.json
 ##0.1.2
 - fixed bug related to ExtensionManagerViewModel.InstalledViewModel
 
+#Ideas/TODO
+- Add "Install from URL" option
