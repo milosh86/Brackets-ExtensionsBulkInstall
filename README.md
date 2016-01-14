@@ -49,6 +49,7 @@ myExtensions.json
 #Release history
 ##0.2.0
 - Removed toolbar icon and added File Menu item instead
+
 ##0.1.2
 - fixed bug related to ExtensionManagerViewModel.InstalledViewModel
 
