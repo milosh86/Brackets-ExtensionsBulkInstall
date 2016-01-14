@@ -1,11 +1,3 @@
-#extensions-install-from-file-toolbar-btn.active {
-  background: url('images/icon_active.svg');
-}
-
-#extensions-install-from-file-toolbar-btn.inactive {
-  background: url('images/icon.svg');
-}
-
 #extensions-install-from-file #btn-group {
 	margin-left: 5px;
 }

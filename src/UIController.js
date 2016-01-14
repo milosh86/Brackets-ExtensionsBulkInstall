@@ -8,9 +8,6 @@ define(function (require, exports, module) {
         startPageHTML = require('text!../ui/startPage.html'),
         tableRowHTML = require('text!../ui/tableRow.html'),
         statusMsgHTML = require('text!../ui/statusMsg.html'),
-        toolbarBtnHTML = require('text!../ui/toolbarBtn.html'),
-        $toolbarBtn,
-        startPage,
         panel,
         $installBtn,
         $exportBtn,
@@ -29,7 +26,6 @@ define(function (require, exports, module) {
 
 
     UIController.initUI = function () {
-        //startPage = Mustache.render(startPageHTML, {});
 
         panel = WM.createBottomPanel('install-extensions-from-file-panel', $(startPageHTML), 300);
 
@@ -62,7 +58,6 @@ define(function (require, exports, module) {
         if (panel) {
             panel.hide();
             panelOpened = false;
-            UIController.updateToolbarIcon();
         }
 
         return UIController;
@@ -72,7 +67,6 @@ define(function (require, exports, module) {
         if (panel) {
             panel.show();
             panelOpened = true;
-            UIController.updateToolbarIcon();
         }
 
         return UIController;

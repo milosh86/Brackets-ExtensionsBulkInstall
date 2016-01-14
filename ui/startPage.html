@@ -1,8 +1,9 @@
 <div id="extensions-install-from-file" class="extensions-install-from-file-dialog bottom-panel top-resizer clearfix">
     <div class="toolbar simple-toolbar-layout">
-        <div class="title">Extensions Bulk Installer </div>
+        <div class="title">Extensions Bulk Installer</div>
         <div id="btn-group">
-            <button title="Import and install extensions from file" id="install-btn" class="btn small install-from-file">
+            <button title="Import and install extensions from file" id="install-btn"
+                    class="btn small install-from-file">
                 <!--				<i class="octicon octicon-plus"></i>-->
                 Install from file
             </button>
@@ -22,9 +23,9 @@
             <hr>
             <table id="install-table" class="bottom-panel-table table table-striped table-condensed row-highlight">
                 <thead>
-                    <th>Extension ID</th>
-                    <th>Extension Title</th>
-                    <th>Status</th>
+                <th>Extension ID</th>
+                <th>Extension Title</th>
+                <th>Status</th>
                 </thead>
                 <tbody id="table-body"></tbody>
             </table>
@@ -35,6 +36,22 @@
         <h4>Status Board</h4>
         <button id="clear-board">Clear</button>
         <hr>
-        <div id="status-messages"></div>
+        <div id="status-messages">
+            <h3>Release history</h3>
+
+            <div>
+                <p>
+                    <b>0.2.0</b>
+                    - Removed toolbar icon and added File Menu item instead
+                    Thanks to <a href="https://github.com/N0bl3">N0bl3</a> and <a href="https://github.com/andrienko">andrienko</a>
+                </p>
+                <p>
+                    <b>0.1.2</b>
+                    - fixed bug related to ExtensionManagerViewModel.InstalledViewModel
+                </p>
+
+            </div>
+
+        </div>
     </div>
 </div>
