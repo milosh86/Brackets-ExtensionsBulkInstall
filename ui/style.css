@@ -24,6 +24,7 @@
 #extensions-install-from-file #clear-board,
 #extensions-install-from-file #clear-table {
 	float: right;
+	margin-right: 5px;
 }
 
 #extensions-install-from-file #loaded-extensions table {
