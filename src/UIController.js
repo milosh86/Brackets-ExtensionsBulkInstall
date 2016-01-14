@@ -55,10 +55,6 @@ define(function (require, exports, module) {
             UIController.resetInstallTable();
         });
 
-        // Insert toolbar button
-        $('#main-toolbar .buttons').append(toolbarBtnHTML);
-        $toolbarBtn = $('#extensions-install-from-file-toolbar-btn');
-
         return UIController;
     };
 
@@ -87,14 +83,6 @@ define(function (require, exports, module) {
             UIController.hidePanel();
         } else {
             UIController.showPanel();
-        }
-    };
-
-    UIController.updateToolbarIcon = function () {
-        if (panelOpened) {
-            $toolbarBtn.removeClass().addClass('active');
-        } else {
-            $toolbarBtn.removeClass().addClass('inactive');
         }
     };
 
@@ -212,10 +200,6 @@ define(function (require, exports, module) {
         setHandler($clearTableBtn, 'click', handler);
 
         return UIController;
-    };
-
-    UIController.setToolbarBtnHandler = function (handler) {
-        setHandler($toolbarBtn, 'click', handler);
     };
 
     return UIController;
