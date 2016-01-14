@@ -4,6 +4,8 @@ define(function (require, exports, module) {
 
     var CommandManager = brackets.getModule("command/CommandManager"),
         KeyBindingManager = brackets.getModule("command/KeyBindingManager"),
+        Menus = brackets.getModule("command/Menus"),
+        fileMenu = Menus.getMenu(Menus.AppMenuBar.FILE_MENU),
         UIController = require('./src/UIController'),
         fileLoader = require('./src/fileLoader'),
         installer = require('./src/extensionsInstaller'),
@@ -43,10 +45,6 @@ define(function (require, exports, module) {
             });
     });
 
-    UIController.setToolbarBtnHandler(function () {
-        UIController.togglePanel();
-    });
-
     // Function to run when the menu item is clicked
     function handleBulkInstallerCall() {
         UIController.togglePanel();
@@ -56,6 +54,6 @@ define(function (require, exports, module) {
     MY_COMMAND_ID = "milosh86.bulk.installer";
     CommandManager.register("Extensions Bulk Installer", MY_COMMAND_ID, handleBulkInstallerCall);
 
-    KeyBindingManager.addBinding(MY_COMMAND_ID, "Ctrl-Alt-M");
+    fileMenu.addMenuItem(MY_COMMAND_ID, "Ctrl-Alt-M", Menus.LAST_IN_SECTION, Menus.MenuSection.FILE_EXTENSION_MANAGER);
     // (Note: "Ctrl" is automatically mapped to "Cmd" on Mac)
 });
