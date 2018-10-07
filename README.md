@@ -2,7 +2,7 @@
 [Brackets Text Editor](http://brackets.io) extension which enables bulk installation of extensions from saved JSON file. No more need for painful manual installation of extensions to synchronize Brackets instances on different machines.
 
 # How it works
-- Open "Extensions Bulk Installer" extension from File menu or by "Ctrl/Cmd-Alt-M" keyboard shortcut.
+- Open "Extensions Bulk Installer" extension from File menu or by ~~"Ctrl/Cmd-Alt-M"~~ "Ctrl/Cmd-I keyboard shortcut.
 - Click "Export to file" button to export all currently installed extensions to file. 
 - Optionally edit exported file to mark extensions which should be ignored during the import process, by setting extension flag to "false".
 - Install easily group of extensions from the exported file on a different machine, just by clicking "Install from file" button and selecting exported file.
@@ -44,9 +44,12 @@ myExtensions.json
 }
 ```
 #Screenshots
-![alt tag](https://raw.github.com/milosh86/Brackets-ExtensionsBulkInstall/master/screenshots/s1.png)
+![alt tag](https://raw.github.com/milosh86/Brackets-ExtensionsBulkInstall/master/screenshots/s2.png)
 
 #Release history
+##0.3.0
+- Changed keyboard shortcut from Ctrl/Cmd-Alt-M to Ctrl/Cmd-I (Ctrl-Alt-M collided with refactoring.extractToFunction)
+- Fixed deprecation warnings (use brackets.getModule("thirdparty/mustache/mustache") instead of global Mustache)
 ##0.2.0
 - Removed toolbar icon and added File Menu item instead
 

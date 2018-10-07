@@ -1,9 +1,10 @@
-/*global define, $, brackets, window, Mustache, console */
+/*global define, $, brackets, window, console */
 
 define(function (require, exports, module) {
     "use strict";
     var WM = brackets.getModule('view/WorkspaceManager'),
         ExtensionUtils = brackets.getModule("utils/ExtensionUtils"),
+        Mustache = brackets.getModule("thirdparty/mustache/mustache"),
 
         startPageHTML = require('text!../ui/startPage.html'),
         tableRowHTML = require('text!../ui/tableRow.html'),

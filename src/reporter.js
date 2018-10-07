@@ -1,4 +1,4 @@
-/*global define, $, brackets, window, Mustache */
+/*global define, $, brackets, window */
 
 define(function (require, exports, module) {
 	"use strict";
@@ -8,6 +8,7 @@ define(function (require, exports, module) {
 		failed = [],
 		
 		reportHTML = require('text!../ui/report.html'),
+		Mustache = brackets.getModule("thirdparty/mustache/mustache"),
 		UIController = require('./UIController');
 
 	function assertStringNonEmpty(str) {

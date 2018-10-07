@@ -53,7 +53,8 @@ define(function (require, exports, module) {
 
     MY_COMMAND_ID = "milosh86.bulk.installer";
     CommandManager.register("Extensions Bulk Installer", MY_COMMAND_ID, handleBulkInstallerCall);
-
-    fileMenu.addMenuItem(MY_COMMAND_ID, "Ctrl-Alt-M", Menus.LAST_IN_SECTION, Menus.MenuSection.FILE_EXTENSION_MANAGER);
+    
+    // Ctrl-Alt-M clashed with refactoring.extractToFunction
+    fileMenu.addMenuItem(MY_COMMAND_ID, "Ctrl-I", Menus.LAST_IN_SECTION, Menus.MenuSection.FILE_EXTENSION_MANAGER);
     // (Note: "Ctrl" is automatically mapped to "Cmd" on Mac)
 });

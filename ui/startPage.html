@@ -2,8 +2,7 @@
     <div class="toolbar simple-toolbar-layout">
         <div class="title">Extensions Bulk Installer</div>
         <div id="btn-group">
-            <button title="Import and install extensions from file" id="install-btn"
-                    class="btn small install-from-file">
+            <button title="Import and install extensions from file" id="install-btn" class="btn small install-from-file">
                 <!--				<i class="octicon octicon-plus"></i>-->
                 Install from file
             </button>
@@ -23,9 +22,9 @@
             <hr>
             <table id="install-table" class="bottom-panel-table table table-striped table-condensed row-highlight">
                 <thead>
-                <th>Extension ID</th>
-                <th>Extension Title</th>
-                <th>Status</th>
+                    <th>Extension ID</th>
+                    <th>Extension Title</th>
+                    <th>Status</th>
                 </thead>
                 <tbody id="table-body"></tbody>
             </table>
@@ -41,8 +40,17 @@
 
             <div>
                 <p>
+                    <b>0.3.0</b>
+                    <p>- Changed keyboard shortcut from Ctrl/Cmd-Alt-M to Ctrl/Cmd-I (Ctrl-Alt-M collided with refactoring.extractToFunction)</p>
+                    <p>- Fixed deprecation warnings (use brackets.getModule("thirdparty/mustache/mustache") instead of global
+                        Mustache)</p>
+                </p>
+                <p>
                     <b>0.2.0</b>
-                    <p>- Removed toolbar icon and added File Menu item instead. Thanks to <a href="https://github.com/N0bl3">N0bl3</a> and <a href="https://github.com/andrienko">andrienko</a></p>
+                    <p>- Removed toolbar icon and added File Menu item instead. Thanks to
+                        <a href="https://github.com/N0bl3">N0bl3</a> and
+                        <a href="https://github.com/andrienko">andrienko</a>
+                    </p>
                 </p>
                 <p>
                     <b>0.1.2</b>

@@ -3,7 +3,7 @@
 	"title": "Extensions Bulk Installer",
 	"description": "Export installed extensions to file. Install it easily on different machines or share it with your team and other developers.",
 	"homepage": "https://github.com/milosh86/Brackets-ExtensionsBulkInstall",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"author": "Milos Dzepina <milos.dzepina@gmail.com>",
 	"license": "MIT",
 	"keywords": ["extensions", "install", "export", "import", "brackets", "bulk", "group install"],
