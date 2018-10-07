@@ -43,18 +43,18 @@ myExtensions.json
   }
 }
 ```
-#Screenshots
+# Screenshots
 ![alt tag](https://raw.github.com/milosh86/Brackets-ExtensionsBulkInstall/master/screenshots/s2.png)
 
-#Release history
-##0.3.0
+# Release history
+## 0.3.0
 - Changed keyboard shortcut from Ctrl/Cmd-Alt-M to Ctrl/Cmd-I (Ctrl-Alt-M collided with refactoring.extractToFunction)
 - Fixed deprecation warnings (use brackets.getModule("thirdparty/mustache/mustache") instead of global Mustache)
-##0.2.0
+## 0.2.0
 - Removed toolbar icon and added File Menu item instead
 
-##0.1.2
+## 0.1.2
 - fixed bug related to ExtensionManagerViewModel.InstalledViewModel
 
-#Ideas/TODO
+# Ideas/TODO
 - Add "Install from URL" option
